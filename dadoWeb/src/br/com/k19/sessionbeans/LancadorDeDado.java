@@ -3,6 +3,9 @@
  */
 package br.com.k19.sessionbeans;
 
+import java.util.Map;
+import java.util.concurrent.Future;
+
 /**
  * @author TON
  *
@@ -10,4 +13,6 @@ package br.com.k19.sessionbeans;
 public interface LancadorDeDado {
 
 	int lanca();
+	
+	Future<Map<Integer, Integer>> calculaFrequencia();
 }
