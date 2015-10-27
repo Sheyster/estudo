@@ -87,55 +87,28 @@ public class ManipulacaoString {
 		}
 		teste();
 		
-//		String caracterRepetido2 = "caracter repetido";
-//		
-//		char[] caracter2 = caracterRepetido2.toCharArray();
-//		char[] aux = null;
-//		
-//		for (int i = 0; i < caracter2.length; i++) {
-//			char x = caracter2[i];
-//			for (int j = i + 1; j < caracter2.length; j++) {
-//				char y = caracter2[j];
-//				if(x == y){
-//					if(aux != null){
-//						for (int k = 0; k < aux.length; k++) {
-//							if(x != aux[k]){
-//								
-//								System.out.println("Caracter repetido: " + x);
-//							}
-//						}
-//					} else {
-//						aux[0] = x;
-//					}
-//				}
-//			}
-//		}
-		
 	}
 	
 	public static void teste(){
 		String caracterRepetido2 = "caracter repetido";
-		
 		String aux = "";
 		
 		for (int i = 0; i < caracterRepetido2.length(); i++) {
+			int count = 0;
 			char x = caracterRepetido2.charAt(i);
 			for (int j = i + 1; j < caracterRepetido2.length(); j++) {
 				char y = caracterRepetido2.charAt(j);
+				
 				if(x == y){
-					if(!aux.isEmpty()){
-						for (int k = 0; k < aux.length(); k++) {
-							if(x != aux.charAt(k)){
-								aux += x;
-								System.out.println("Caracter repetido: " + x);
-								break;
-							}
-						}
-					} else {
-						aux += x;
-					}
+					count++;
 				}
 			}
+			
+			if(count == 1){
+				aux += x;
+			}
 		}
+		
+		System.out.println(aux);
 	}
 }
