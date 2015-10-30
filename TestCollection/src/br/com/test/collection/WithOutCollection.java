@@ -34,9 +34,9 @@ public class WithOutCollection {
 		
 		ordernar(vectores);
 		
-		Integer vectorRemoverDuplicado[] = vectores;
+		Integer vectorOrdenado[] = vectores;
 		
-		Integer vtRepitido[] = repetidos(vectorRemoverDuplicado);
+		Integer vtRepitido[] = repetidos(vectorOrdenado);
 		
 		Integer vtSemRepetido[] = removerDuplicado(vectores);
 		
