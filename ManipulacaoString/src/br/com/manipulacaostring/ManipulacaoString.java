@@ -90,14 +90,14 @@ public class ManipulacaoString {
 	}
 	
 	public static void teste(){
-		String caracterRepetido2 = "caracter repetido";
+		String caracterRepetido = "caracter repetido";
 		String aux = "";
 		
-		for (int i = 0; i < caracterRepetido2.length(); i++) {
+		for (int i = 0; i < caracterRepetido.length(); i++) {
 			int count = 0;
-			char x = caracterRepetido2.charAt(i);
-			for (int j = i + 1; j < caracterRepetido2.length(); j++) {
-				char y = caracterRepetido2.charAt(j);
+			char x = caracterRepetido.charAt(i);
+			for (int j = i + 1; j < caracterRepetido.length(); j++) {
+				char y = caracterRepetido.charAt(j);
 				
 				if(x == y){
 					count++;
