@@ -1,0 +1,19 @@
+package br.com.k19.sessionbeans;
+
+import javax.ejb.Local;
+import javax.ejb.Stateless;
+
+@Stateless
+@Local(Calculadora.class)
+public class CalculadoraBean implements Calculadora{
+
+	@Override
+	public double soma(double a, double b) {
+		return a + b;
+	}
+	
+	private void teste(){
+		System.out.println("teste");
+	}
+
+}
