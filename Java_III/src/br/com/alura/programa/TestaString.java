@@ -13,7 +13,7 @@ public class TestaString {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		final String s = "abfj11 cd";
+		final String s = "ab fj11 cd";
 		final String s3 = "fj11";
 		final String s2 = s.replaceAll("1", "2");
 		System.out.println(s);
