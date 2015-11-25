@@ -15,7 +15,7 @@ public class TestaContas {
 
 		// c.deposita(1000);
 		try {
-			cc.deposita(-1000);
+			cc.deposita(1000);
 		} catch (final ValorInvalidoException e) {
 			System.out.println(e.getMessage());
 		}
@@ -35,7 +35,7 @@ public class TestaContas {
 		// System.out.println(lista.toString());
 		// }
 
-		final String[] ss = new String[Integer.MAX_VALUE];
+		// final String[] ss = new String[Integer.MAX_VALUE];
 		// AtualizadorDeContas at = new AtualizadorDeContas(0.1);
 		// at.roda(c);
 		// System.out.println(c.getSaldo());

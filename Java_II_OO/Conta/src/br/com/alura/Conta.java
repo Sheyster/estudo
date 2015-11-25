@@ -10,6 +10,14 @@ public abstract class Conta {
 		return this.saldo;
 	}
 
+	/**
+	 * Método responsável pelo depósito na conta do cliente.
+	 * 
+	 * @param valor
+	 *            Valor a ser creditado.
+	 * @throws ValorInvalidoException
+	 *             Caso receba um número negativo.
+	 */
 	public void deposita(double valor) throws ValorInvalidoException {
 		if (valor < 0) {
 			throw new ValorInvalidoException(valor);
