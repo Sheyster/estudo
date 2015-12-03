@@ -5,7 +5,7 @@ import br.com.alura.exceptions.ValorInvalidoException;
 public abstract class Conta {
 	protected double saldo;
 	private String nome;
-	private int numero;
+	protected int numero;
 
 	public double getSaldo() {
 		return this.saldo;

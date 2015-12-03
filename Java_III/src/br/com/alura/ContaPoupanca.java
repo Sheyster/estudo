@@ -1,14 +1,26 @@
 package br.com.alura;
 
-public class ContaPoupanca extends Conta{
+public class ContaPoupanca extends Conta implements Comparable<ContaPoupanca> {
 
 	@Override
 	public void atualiza(double taxa) {
-		// TODO Auto-generated method stub
-		
 	}
-	
-//	public void atualiza(double taxa){
-//		this.saldo += this.saldo * taxa * 3;
-//	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Comparable#compareTo(java.lang.Object)
+	 */
+	@Override
+	public int compareTo(ContaPoupanca o) {
+		if (this.numero < o.numero) {
+			return -1;
+		}
+		if (this.numero > o.numero) {
+			return 1;
+		}
+
+		return 0;
+	}
+
 }
