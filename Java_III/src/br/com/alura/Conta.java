@@ -4,7 +4,7 @@ import br.com.alura.exceptions.ValorInvalidoException;
 
 public abstract class Conta {
 	protected double saldo;
-	private String nome;
+	protected String nome;
 	protected int numero;
 
 	public double getSaldo() {
@@ -42,11 +42,25 @@ public abstract class Conta {
 	}
 
 	/**
+	 * @return the nome
+	 */
+	public String getNome() {
+		return this.nome;
+	}
+
+	/**
 	 * @param numero
 	 *            the numero to set
 	 */
 	public void setNumero(int numero) {
 		this.numero = numero;
+	}
+
+	/**
+	 * @return the numero
+	 */
+	public int getNumero() {
+		return this.numero;
 	}
 
 	/*
@@ -56,7 +70,8 @@ public abstract class Conta {
 	 */
 	@Override
 	public String toString() {
-		return "Esse objeto é uma conta com saldo R$" + this.saldo;
+		// return "Esse objeto é uma conta com saldo R$" + this.saldo;
+		return "Esse objeto é o número da conta: " + this.numero;
 	}
 
 	/*

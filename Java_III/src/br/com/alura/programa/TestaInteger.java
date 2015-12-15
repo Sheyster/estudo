@@ -33,7 +33,7 @@ public class TestaInteger {
 		}
 
 		System.out.println(Integer.parseInt(s));
-		// System.out.println(Integer.parseInt(s1));
+		System.out.println(Integer.parseInt(s1));
 
 		final PrintStream saida = System.out;
 		saida.println("ola");

@@ -15,7 +15,7 @@ public class TestaString {
 	public static void main(String[] args) {
 		final String s = "ab fj11 cd";
 		final String s3 = "fj11";
-		final String s2 = s.replaceAll("1", "2");
+		// final String s2 = s.replaceAll("1", "2");
 		final String s4 = " teste teste ";
 		final String s5 = "";
 		System.out.println(s);
