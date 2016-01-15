@@ -9,25 +9,43 @@ import java.sql.Statement;
 public class TestaInsercao {
 
 	public static void main(String[] args) throws SQLException {
-		Connection connection = Database.getConnection();
-		String nome = "Notebook";
-		String descrição = "Dell´s";
+		try (Connection connection = new ConnectionPool().getConnection()) {
+			connection.setAutoCommit(false);
 
-		String sql;
-		sql = "insert into produto (nome, descricao) values (?, ?)";
-		PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-		statement.setString(0, nome);
-		statement.setString(1, descrição);
+			String sql;
+			sql = "insert into produto (nome, descricao) values (?, ?)";
 
-		ResultSet resultSet = statement.getGeneratedKeys();
+			try (PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+				adiciona("TV LCD", "32 polegadas", statement);
+				adiciona("Blueray", "Full HDMI", statement);
+				connection.commit();
+			} catch (Exception e) {
+				e.printStackTrace();
+				connection.rollback();
+				System.out.println("Roolback efetuado");
+			}
+		}
+	}
 
-		while (resultSet.next()) {
-			System.out.println(resultSet.getString("id"));
+	/**
+	 * @param nome
+	 * @param descrição
+	 * @param statement
+	 * @throws SQLException
+	 */
+	private static void adiciona(String nome, String descrição, PreparedStatement statement) throws SQLException {
+		if (nome.equals("Blueray")) {
+			throw new IllegalArgumentException("Problema ocorrido");
 		}
 
-		resultSet.close();
-		statement.close();
-		connection.close();
+		statement.setString(1, nome);
+		statement.setString(2, descrição);
+
+		try (ResultSet resultSet = statement.getGeneratedKeys()) {
+			while (resultSet.next()) {
+				System.out.println(resultSet.getString("id"));
+			}
+		}
 	}
 
 }
