@@ -5,6 +5,7 @@ public class Produto {
 	private Integer id;
 	private String nome;
 	private String descricao;
+	private Categoria categoria;
 
 	public Produto(String nome, String descricao) {
 		super();
@@ -24,4 +25,8 @@ public class Produto {
 		this.id = id;
 	}
 
+	@Override
+	public String toString() {
+		return String.format("[produto: %d %s %s]", id, nome, descricao);
+	}
 }
