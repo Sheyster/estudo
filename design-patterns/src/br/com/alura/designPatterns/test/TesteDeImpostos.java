@@ -6,7 +6,7 @@ package br.com.alura.designPatterns.test;
 import br.com.alura.designPatterns.ICCC;
 import br.com.alura.designPatterns.ICMS;
 import br.com.alura.designPatterns.ISS;
-import br.com.alura.designPatterns.Imposto;
+import br.com.alura.designPatterns.interfaces.Imposto;
 import br.com.alura.designPatterns.model.Orcamento;
 
 /**

@@ -5,6 +5,7 @@ package br.com.alura.designPatterns;
 
 import java.util.Random;
 
+import br.com.alura.designPatterns.interfaces.Investimento;
 import br.com.alura.designPatterns.model.Conta;
 
 /**

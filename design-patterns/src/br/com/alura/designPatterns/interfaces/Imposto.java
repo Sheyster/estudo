@@ -1,7 +1,7 @@
 /**
  * 
  */
-package br.com.alura.designPatterns;
+package br.com.alura.designPatterns.interfaces;
 
 import br.com.alura.designPatterns.model.Orcamento;
 
