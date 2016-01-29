@@ -4,6 +4,7 @@
 package br.com.alura.designPatterns.test;
 
 import br.com.alura.designPatterns.ICPP;
+import br.com.alura.designPatterns.IHIT;
 import br.com.alura.designPatterns.IKCV;
 import br.com.alura.designPatterns.TemplateDeImpostoCondicional;
 import br.com.alura.designPatterns.model.Item;
@@ -21,16 +22,21 @@ public class TesteDeImpostosCondicional {
 	public static void main(String[] args) {
 		TemplateDeImpostoCondicional icpp = new ICPP();
 		TemplateDeImpostoCondicional ikcb = new IKCV();
+		TemplateDeImpostoCondicional ihit = new IHIT();
 
 		Orcamento orcamento = new Orcamento(1000.00);
 		orcamento.adicionaItem(new Item("CANETA", 50.0));
 		orcamento.adicionaItem(new Item("LAPIS", 150.0));
+		orcamento.adicionaItem(new Item("BORRACHA", 250.0));
 
 		double resultado = ikcb.calcula(orcamento);
 		System.out.println(resultado);
 
 		double resultado2 = icpp.calcula(orcamento);
 		System.out.println(resultado2);
+
+		double resultado3 = ihit.calcula(orcamento);
+		System.out.println(resultado3);
 	}
 
 }
