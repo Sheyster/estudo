@@ -10,10 +10,23 @@ import br.com.alura.designPatterns.model.Orcamento;
  * @author eltonf
  *
  */
-public class ICCC implements Imposto {
+public class ICCC extends Imposto {
 
 	private static final double TRES_MIL = 3000.0;
 	private static final double MIL = 1000.0;
+
+	/**
+	 * 
+	 */
+	public ICCC() {
+	}
+
+	/**
+	 * @param outroImposto
+	 */
+	public ICCC(Imposto outroImposto) {
+		super(outroImposto);
+	}
 
 	@Override
 	public double calcula(Orcamento orcamento) {

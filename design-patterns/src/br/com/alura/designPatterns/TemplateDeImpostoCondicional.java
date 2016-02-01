@@ -10,7 +10,21 @@ import br.com.alura.designPatterns.model.Orcamento;
  * @author eltonf
  *
  */
-public abstract class TemplateDeImpostoCondicional implements Imposto {
+public abstract class TemplateDeImpostoCondicional extends Imposto {
+
+	/**
+	 * 
+	 */
+	public TemplateDeImpostoCondicional() {
+		super();
+	}
+
+	/**
+	 * @param outroImposto
+	 */
+	public TemplateDeImpostoCondicional(Imposto outroImposto) {
+		super(outroImposto);
+	}
 
 	@Override
 	public final double calcula(Orcamento orcamento) {

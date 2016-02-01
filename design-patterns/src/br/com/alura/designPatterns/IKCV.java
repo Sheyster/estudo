@@ -3,6 +3,7 @@
  */
 package br.com.alura.designPatterns;
 
+import br.com.alura.designPatterns.interfaces.Imposto;
 import br.com.alura.designPatterns.model.Item;
 import br.com.alura.designPatterns.model.Orcamento;
 
@@ -11,6 +12,14 @@ import br.com.alura.designPatterns.model.Orcamento;
  *
  */
 public class IKCV extends TemplateDeImpostoCondicional {
+
+	public IKCV() {
+		super();
+	}
+
+	public IKCV(Imposto outroImposto) {
+		super(outroImposto);
+	}
 
 	/**
 	 * @param orcamento
@@ -27,12 +36,12 @@ public class IKCV extends TemplateDeImpostoCondicional {
 
 	@Override
 	public double minimaTaxacao(Orcamento orcamento) {
-		return orcamento.getValor() * 0.06;
+		return orcamento.getValor() * 0.06 + calculoDoOutroImposto(orcamento);
 	}
 
 	@Override
 	public double maximaTaxacao(Orcamento orcamento) {
-		return orcamento.getValor() * 0.10;
+		return orcamento.getValor() * 0.10 + calculoDoOutroImposto(orcamento);
 	}
 
 	@Override
