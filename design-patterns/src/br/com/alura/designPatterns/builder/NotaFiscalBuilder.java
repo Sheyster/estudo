@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import br.com.alura.designPatterns.observer.AcaoAposGerarNota;
+
 /**
  * @author eltonf
  *
@@ -20,13 +22,28 @@ public class NotaFiscalBuilder {
 	private Calendar data;
 	private String observacao;
 	private List<ItemDaNota> todosItens = new ArrayList<>();
+	private List<AcaoAposGerarNota> todasAcoesASeremExecutadas;
 
 	public NotaFiscalBuilder() {
 		this.data = Calendar.getInstance();
+		this.todasAcoesASeremExecutadas = new ArrayList<AcaoAposGerarNota>();
 	}
 
-	public NotaFiscal controi() {
-		return new NotaFiscal(razaoSocial, CNPJ, valorBruto, impostos, data, observacao, todosItens);
+	public NotaFiscalBuilder(List<AcaoAposGerarNota> listaNovasAcoes) {
+		this.todasAcoesASeremExecutadas = listaNovasAcoes;
+	}
+
+	public void adicionaAcao(AcaoAposGerarNota novaAcao) {
+		this.todasAcoesASeremExecutadas.add(novaAcao);
+	}
+
+	public NotaFiscal constroi() {
+		NotaFiscal notaFiscal = new NotaFiscal(razaoSocial, CNPJ, valorBruto, impostos, data, observacao, todosItens);
+
+		for (AcaoAposGerarNota gerarNota : todasAcoesASeremExecutadas) {
+			gerarNota.executa(notaFiscal);
+		}
+		return notaFiscal;
 	}
 
 	public NotaFiscalBuilder paraEmpresa(String razaoSocial) {
@@ -55,6 +72,7 @@ public class NotaFiscalBuilder {
 		this.data = data;
 		return this;
 	}
+
 	// public NotaFiscalBuilder naDataAtual() {
 	// this.data = Calendar.getInstance();
 	// return this;

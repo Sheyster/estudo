@@ -36,7 +36,7 @@ public class TesteNotaFiscalBuilder {
 		builder.paraEmpresa("ALURA").comCnpj("123.456.789/0001-10").com(item1).com(item2).com(item3)
 				.com(item4).comObservacao("entregar nf pessoalmente");
 
-		NotaFiscal notaFiscal = builder.controi();
+		NotaFiscal notaFiscal = builder.constroi();
 
 		System.out.println(notaFiscal.getValorBruto());
 		System.out.println(notaFiscal.getImpostos());
