@@ -33,6 +33,20 @@ public class Gasto {
 		this.pagoEmDinheiro = pagoEmDinheiro;
 	}
 
+	/**
+	 * @param valor2
+	 * @param tp
+	 * @param funcionario2
+	 * @param dataDespesa
+	 */
+	public Gasto(double valor, String tipo, Funcionario funcionario, Calendar dataDespesa) {
+		super();
+		this.valor = valor;
+		this.tipo = tipo;
+		this.funcionario = funcionario;
+		this.data = dataDespesa;
+	}
+
 	/*
 	 * (non-Javadoc)
 	 * 
