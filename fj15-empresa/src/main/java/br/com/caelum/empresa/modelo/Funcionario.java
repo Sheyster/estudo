@@ -2,10 +2,18 @@ package br.com.caelum.empresa.modelo;
 
 import java.util.Calendar;
 
+import org.apache.log4j.Logger;
+
 public class Funcionario {
 	private String nome;
 	private int matricula;
 	private Calendar dataNascimento;
+	/**
+	 * Logger para auditoria da classse Funcionario
+	 * 
+	 * @author eltonf
+	 */
+	private static final Logger logger = Logger.getLogger(Funcionario.class);
 
 	public Funcionario(String nome, int matricula, Calendar dataNascimento) {
 		this.nome = nome;

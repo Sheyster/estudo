@@ -26,5 +26,9 @@ public class TestaFuncionario {
 		Gasto gasto3 = new Gasto(40, "teste", funcionario, data, false);
 
 		System.out.println(gasto1);
+
+		for (String string : args) {
+			System.out.println(string);
+		}
 	}
 }
