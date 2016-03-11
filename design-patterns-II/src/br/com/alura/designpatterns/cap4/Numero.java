@@ -15,13 +15,20 @@ public class Numero implements Expressao {
 		this.numero = numero;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see br.com.alura.designpatterns.cap4.Expressao#avalia()
-	 */
 	@Override
 	public int avalia() {
+		return numero;
+	}
+
+	@Override
+	public void aceita(Visitor visitor) {
+		visitor.visitaNumero(this);
+	}
+
+	/**
+	 * @return the numero
+	 */
+	public int getNumero() {
 		return numero;
 	}
 }

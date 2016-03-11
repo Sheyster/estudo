@@ -18,14 +18,15 @@ public class RaizQuadrada implements Expressao {
 		this.numero = numero;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see br.com.alura.designpatterns.cap4.Expressao#avalia()
-	 */
 	@Override
 	public int avalia() {
 		double resultadoEsquerda = this.numero.avalia();
 		return (int) Math.sqrt(resultadoEsquerda);
 	}
+
+	@Override
+	public void aceita(Visitor visitor) {
+
+	}
+
 }
