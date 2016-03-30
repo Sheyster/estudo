@@ -1,7 +1,7 @@
 /**
  * 
  */
-package br.com.alura.threads;
+package br.com.alura.threads.cap1;
 
 import java.io.IOException;
 import java.net.Socket;
