@@ -21,9 +21,9 @@ public class InserirElementos implements Runnable {
 	@Override
 	public void run() {
 		for (int i = 1; i <= 100; i++) {
-			synchronized (Armazenamento.instancia) {
-				Armazenamento.instancia.adicionaElemento("Thread " + numeroThread + " - " + i);
-			}
+			/* synchronized (Armazenamento.instancia) { */
+			Armazenamento.instancia.adicionaElemento("Thread " + numeroThread + " - " + i);
+			/* } */
 		}
 	}
 

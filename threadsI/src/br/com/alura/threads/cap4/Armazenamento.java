@@ -15,12 +15,23 @@ public class Armazenamento {
 
 	private int contador = 0;
 
-	public /* synchronized */ void adicionaElemento(String elemento) {
+	public synchronized void adicionaElemento(String elemento) {
 		lista[contador] = elemento;
 		contador++;
+		if (contador == lista.length) {
+			this.notify();
+		}
 	}
 
 	public String[] recuperaLista() {
 		return lista;
 	}
+
+	/**
+	 * @return the contador
+	 */
+	public int getContador() {
+		return contador;
+	}
+
 }

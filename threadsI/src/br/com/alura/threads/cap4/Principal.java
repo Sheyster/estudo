@@ -22,10 +22,14 @@ public class Principal {
 
 		Thread.sleep(2000);
 
-		String[] lista = Armazenamento.instancia.recuperaLista();
-
-		for (String elemento : lista) {
-			System.out.println(elemento);
+		synchronized (Armazenamento.instancia) {
+			String[] lista = Armazenamento.instancia.recuperaLista();
+			if (Armazenamento.instancia.getContador() < 1000) {
+				Armazenamento.instancia.wait();
+			}
+			for (String elemento : lista) {
+				System.out.println(elemento);
+			}
 		}
 	}
 }
