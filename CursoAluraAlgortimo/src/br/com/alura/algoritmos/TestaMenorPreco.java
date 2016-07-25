@@ -4,22 +4,45 @@ public class TestaMenorPreco {
 
 	public static void main(String[] args) {
 
-		double precos[] = new double[5];
-		precos[0] = 1000000;
-		precos[1] = 46000;
-		precos[2] = 16000;
-		precos[3] = 46000;
-		precos[4] = 17000;
+		// Produto produtos[] = new Produto[5];
+		// produtos[0] = new Produto("Lamborghini", 1000000);
+		// produtos[1] = new Produto("Jipe", 46000);
+		// produtos[2] = new Produto("Brasilia", 16000);
+		// produtos[3] = new Produto("Smart", 46000);
+		// produtos[4] = new Produto("Fusca", 17000);
 
+		Produto produtos[] = { new Produto("Lamborghini", 1000000), new Produto("Jipe", 46000),
+				new Produto("Brasilia", 16000), new Produto("Smart", 46000), new Produto("Fusca", 17000) };
+
+		int maisBarato = buscarMenor(produtos);
+
+		int maisCaro = buscarMaior(produtos);
+
+		System.out.println(produtos[maisBarato].getNome() + ", valor R$ " + produtos[maisBarato].getValor());
+
+		System.out.println(produtos[maisCaro].getNome() + ", valor R$ " + produtos[maisCaro].getValor());
+	}
+
+	private static int buscarMenor(Produto[] produtos) {
 		int maisBarato = 0;
 
-		for (int atual = 0; atual < precos.length; atual++) {
-			if (precos[atual] < precos[maisBarato]) {
+		for (int atual = 0; atual < produtos.length; atual++) {
+			if (produtos[atual].getValor() < produtos[maisBarato].getValor()) {
 				maisBarato = atual;
 			}
 		}
+		return maisBarato;
+	}
 
-		System.out.println(maisBarato + ", valor R$ " + precos[maisBarato]);
+	private static int buscarMaior(Produto[] produtos) {
+		int maisCaro = 0;
+
+		for (int atual = 0; atual < produtos.length; atual++) {
+			if (produtos[atual].getValor() > produtos[maisCaro].getValor()) {
+				maisCaro = atual;
+			}
+		}
+		return maisCaro;
 	}
 
 }
