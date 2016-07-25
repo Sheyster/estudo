@@ -1,4 +1,4 @@
-package br.com.alura.algoritmos;
+package br.com.alura.algoritmosI;
 
 public class TestaOrdenacao {
 
