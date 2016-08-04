@@ -1,6 +1,6 @@
 package br.com.alura.algoritmosII;
 
-public class TestaPivota {
+public class TestaOrdenacaoRapida {
 
 	public static void main(String[] args) {
 		Nota guilherme = new Nota("Guilherme", 7);
@@ -8,13 +8,22 @@ public class TestaPivota {
 				new Nota("Juliana", 6.7), new Nota("Lucia", 9.3), new Nota("Paulo", 9.0), new Nota("Mariana", 5.0),
 				guilherme };
 
-		int possicao = particiona(notas, 0, notas.length);
+		ordena(notas, 0, notas.length);
 
 		for (Nota nota : notas) {
 			System.out.println("Aluno: " + nota.getAluno() + " nota " + nota.getValor());
 		}
 
-		System.out.println(possicao);
+	}
+
+	private static void ordena(Nota[] notas, int de, int ate) {
+		int elementos = ate - de;
+
+		if (elementos > 1) {
+			int posicaoDoPivo = particiona(notas, de, ate);
+			ordena(notas, de, posicaoDoPivo);
+			ordena(notas, posicaoDoPivo + 1, ate);
+		}
 	}
 
 	private static int particiona(Nota[] notas, int i, int termino) {
