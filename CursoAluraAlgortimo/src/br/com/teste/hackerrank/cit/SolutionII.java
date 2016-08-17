@@ -3,7 +3,9 @@ package br.com.teste.hackerrank.cit;
 public class SolutionII {
 
 	public static void main(String[] args) {
-		int vectores[] = { 1, 2, 3, 4, 5 };
+		// int vectores[] = { 1, 2, 3, 4, 5 };
+
+		int vectores[] = { 6, 10, 5, 7, 9, 2, 2 };
 
 		int retorn[] = ordernar(vectores);
 

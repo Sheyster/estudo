@@ -9,11 +9,42 @@ public class TestaOrdenacaoRapida {
 				guilherme };
 
 		ordena(notas, 0, notas.length);
+		int encontrei = busca(notas, 0, notas.length, 9.3);
+
+		if (encontrei >= 0) {
+			System.out.println("Encontrei a nota em " + encontrei + ".");
+		} else {
+			System.out.println("Não encontrei a nota.");
+		}
 
 		for (Nota nota : notas) {
 			System.out.println("Aluno: " + nota.getAluno() + " nota " + nota.getValor());
 		}
 
+	}
+
+	private static int busca(Nota[] notas, int de, int ate, double buscando) {
+		if (de > ate) {
+			return -1;
+		}
+
+		int meio = (de + ate) / 2;
+		Nota nota = notas[meio];
+		if (buscando == nota.getValor()) {
+			return meio;
+		}
+		if (buscando < nota.getValor()) {
+			return busca(notas, de, meio - 1, buscando);
+		}
+
+		return busca(notas, meio + 1, ate, buscando);
+
+		// for (int atual = de; atual < ate; atual++) {
+		// if (notas[atual].getValor() == buscando) {
+		// return atual;
+		// }
+		// }
+		// return -1;
 	}
 
 	private static void ordena(Nota[] notas, int de, int ate) {
