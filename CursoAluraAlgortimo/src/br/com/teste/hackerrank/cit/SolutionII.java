@@ -47,8 +47,6 @@ public class SolutionII {
 				break;
 			}
 		}
-
 		return merg;
-
 	}
 }

@@ -3,26 +3,26 @@ package br.com.alura.algoritmosII;
 public class TestaIntercalaEmUmArray {
 
 	public static void main(String[] args) {
-		Nota[] notas = { new Nota("Andre", 4), new Nota("Mariana", 5), new Nota("Carlos", 8.5), new Nota("Paulo", 9),
-				new Nota("Jonas", 3), new Nota("Juliana", 6.7), new Nota("Guilherme", 7), new Nota("Lucia", 9.3),
-				new Nota("Ana", 10) };
+		registros[] notas = { new registros("Andre", 4), new registros("Mariana", 5), new registros("Carlos", 8.5), new registros("Paulo", 9),
+				new registros("Jonas", 3), new registros("Juliana", 6.7), new registros("Guilherme", 7), new registros("Lucia", 9.3),
+				new registros("Ana", 10) };
 
-		Nota[] rank = intercalar(notas, 0, 4, notas.length);
-		for (Nota nota : rank) {
+		registros[] rank = intercalar(notas, 0, 4, notas.length);
+		for (registros nota : rank) {
 			System.out.println("Aluno: " + nota.getAluno() + ", nota: " + nota.getValor());
 		}
 	}
 
-	private static Nota[] intercalar(Nota[] notas, int inicial, int miolo, int termino) {
-		Nota[] resultado = new Nota[termino];
+	private static registros[] intercalar(registros[] notas, int inicial, int miolo, int termino) {
+		registros[] resultado = new registros[termino];
 
 		int atual1 = inicial;
 		int atual2 = miolo;
 		int atual = 0;
 
 		while (atual1 < miolo && atual2 < termino) {
-			Nota nota1 = notas[atual1];
-			Nota nota2 = notas[atual2];
+			registros nota1 = notas[atual1];
+			registros nota2 = notas[atual2];
 			if (nota1.getValor() < nota2.getValor()) {
 				resultado[atual] = nota1;
 				atual1++;

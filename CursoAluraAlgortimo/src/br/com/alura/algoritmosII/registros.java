@@ -1,11 +1,11 @@
 package br.com.alura.algoritmosII;
 
-public class Nota {
+public class registros {
 
 	private String aluno;
 	private double valor;
 
-	public Nota(String aluno, double valor) {
+	public registros(String aluno, double valor) {
 		this.aluno = aluno;
 		this.valor = valor;
 	}

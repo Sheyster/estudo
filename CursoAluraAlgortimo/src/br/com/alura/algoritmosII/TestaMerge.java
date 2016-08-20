@@ -3,27 +3,27 @@ package br.com.alura.algoritmosII;
 public class TestaMerge {
 
 	public static void main(String[] args) {
-		Nota[] notasMauricio = { new Nota("Andre", 4), new Nota("Mariana", 5), new Nota("Carlos", 8.5),
-				new Nota("Paulo", 9) };
-		Nota[] notasAlberto = { new Nota("Jonas", 3), new Nota("Juliana", 6.7), new Nota("Guilherme", 7),
-				new Nota("Lucia", 9.3), new Nota("Ana", 10) };
+		registros[] notasMauricio = { new registros("Andre", 4), new registros("Mariana", 5), new registros("Carlos", 8.5),
+				new registros("Paulo", 9) };
+		registros[] notasAlberto = { new registros("Jonas", 3), new registros("Juliana", 6.7), new registros("Guilherme", 7),
+				new registros("Lucia", 9.3), new registros("Ana", 10) };
 
-		Nota[] rank = junta(notasAlberto, notasMauricio);
-		for (Nota nota : rank) {
+		registros[] rank = junta(notasAlberto, notasMauricio);
+		for (registros nota : rank) {
 			System.out.println("Aluno: " + nota.getAluno() + ", nota: " + nota.getValor());
 		}
 	}
 
-	private static Nota[] junta(Nota[] notasMauricio, Nota[] notasAlberto) {
-		Nota[] notas = new Nota[notasMauricio.length + notasAlberto.length];
+	private static registros[] junta(registros[] notasMauricio, registros[] notasAlberto) {
+		registros[] notas = new registros[notasMauricio.length + notasAlberto.length];
 
 		int atualMauricio = 0;
 		int atualAlberto = 0;
 		int atual = 0;
 
 		while (atualMauricio < notasMauricio.length && atualAlberto < notasAlberto.length) {
-			Nota nota1 = notasMauricio[atualMauricio];
-			Nota nota2 = notasAlberto[atualAlberto];
+			registros nota1 = notasMauricio[atualMauricio];
+			registros nota2 = notasAlberto[atualAlberto];
 			if (nota1.getValor() < nota2.getValor()) {
 				notas[atual] = nota1;
 				atualMauricio++;

@@ -1,12 +1,11 @@
 package br.com.teste.hackerrank.cit;
+
 public class Solution {
 
 	public static void main(String[] args) {
 		String a = "Vem pra";
 		String b = "CI&T";
 
-		// int tamanhoA = a.length();
-		// int tamanhoB = b.length();
 		String retorno = mergeStrings(a, b);
 
 		System.out.println(retorno);

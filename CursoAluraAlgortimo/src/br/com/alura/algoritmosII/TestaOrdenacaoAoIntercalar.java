@@ -3,18 +3,18 @@ package br.com.alura.algoritmosII;
 public class TestaOrdenacaoAoIntercalar {
 
 	public static void main(String[] args) {
-		Nota[] notas = { new Nota("Andre", 4.0), new Nota("Carlos", 8.5), new Nota("Ana", 10), new Nota("Jonas", 3.0),
-				new Nota("Juliana", 6.7), new Nota("Guilherme", 7), new Nota("Paulo", 9.0), new Nota("Mariana", 5.0),
-				new Nota("Lucia", 9.3) };
+		registros[] notas = { new registros("Andre", 4.0), new registros("Carlos", 8.5), new registros("Ana", 10), new registros("Jonas", 3.0),
+				new registros("Juliana", 6.7), new registros("Guilherme", 7), new registros("Paulo", 9.0), new registros("Mariana", 5.0),
+				new registros("Lucia", 9.3) };
 
 		ordena(notas, 0, notas.length);
 
-		for (Nota nota : notas) {
+		for (registros nota : notas) {
 			System.out.println("Aluno: " + nota.getAluno() + ", nota: " + nota.getValor());
 		}
 	}
 
-	private static void ordena(Nota[] notas, int inicial, int termino) {
+	private static void ordena(registros[] notas, int inicial, int termino) {
 		int quantidade = termino - inicial;
 
 		if (quantidade > 1) {
@@ -41,16 +41,16 @@ public class TestaOrdenacaoAoIntercalar {
 		 */
 	}
 
-	private static void intercalar(Nota[] notas, int inicial, int miolo, int termino) {
-		Nota[] resultado = new Nota[termino - inicial];
+	private static void intercalar(registros[] notas, int inicial, int miolo, int termino) {
+		registros[] resultado = new registros[termino - inicial];
 
 		int atual = 0;
 		int atual1 = inicial;
 		int atual2 = miolo;
 
 		while (atual1 < miolo && atual2 < termino) {
-			Nota nota1 = notas[atual1];
-			Nota nota2 = notas[atual2];
+			registros nota1 = notas[atual1];
+			registros nota2 = notas[atual2];
 			if (nota1.getValor() < nota2.getValor()) {
 				resultado[atual] = nota1;
 				atual1++;
