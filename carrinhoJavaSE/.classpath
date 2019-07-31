@@ -3,6 +3,6 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/carrinhoWeb"/>
-	<classpathentry kind="lib" path="D:/Estudos_Java/Servidores_Aplicacao/jboss-as-7.1.1.Final/bin/client/jboss-client.jar"/>
+	<classpathentry kind="lib" path="D:/Elton/Estudos/ServidorAplicacao/wildfly-14.0.0.Final/bin/client/jboss-client.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
