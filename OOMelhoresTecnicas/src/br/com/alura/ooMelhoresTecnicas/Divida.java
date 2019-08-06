@@ -1,10 +1,11 @@
 package br.com.alura.ooMelhoresTecnicas;
 
+import br.com.alura.ooMelhoresTecnicas.interfaces.Documento;
+
 public class Divida {
 	private double total;
 	private String credor;
-	private Cnpj cnpjCredor = new Cnpj();
-
+	private Documento documentoCredor;
 	private Pagamentos pagamentos = new Pagamentos();
 
 	public double getTotal() {
@@ -23,10 +24,6 @@ public class Divida {
 		this.total = total;
 	}
 
-	public String getCnpjCredor() {
-		return cnpjCredor.getValor();
-	}
-
 	public void registra(Pagamento pagamento) {
 		pagamentos.registra(pagamento);
 	}
@@ -35,8 +32,12 @@ public class Divida {
 		return pagamentos.getValorPago();
 	}
 
-	public void setCnpjCredor(Cnpj cnpjCredor) {
-		this.cnpjCredor = cnpjCredor;
+	public Documento getDocumentoCredor() {
+		return documentoCredor;
+	}
+
+	public void setDocumentoCredor(Documento documentoCredor) {
+		this.documentoCredor = documentoCredor;
 	}
 
 }

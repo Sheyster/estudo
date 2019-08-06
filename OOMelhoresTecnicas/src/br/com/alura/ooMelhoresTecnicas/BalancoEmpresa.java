@@ -2,17 +2,20 @@ package br.com.alura.ooMelhoresTecnicas;
 
 import java.util.HashMap;
 
+import br.com.alura.ooMelhoresTecnicas.interfaces.Documento;
+
 public class BalancoEmpresa {
-	private HashMap<String, Divida> dividas = new HashMap<String, Divida>();
+	private HashMap<Documento, Divida> dividasPJ = new HashMap<Documento, Divida>();
 
 	public void registraDivida(Divida divida) {
-		dividas.put(divida.getCnpjCredor(), divida);
+		dividasPJ.put(divida.getDocumentoCredor(), divida);
 	}
 
-	public void pagaDivida(String cnpjCredor, Pagamento pagamento) {
-		Divida divida = dividas.get(cnpjCredor);
+	public void pagaDivida(Documento documentoCredor, Pagamento pagamento) {
+		Divida divida = dividasPJ.get(documentoCredor);
 		if (divida != null) {
 			divida.registra(pagamento);
 		}
 	}
+
 }

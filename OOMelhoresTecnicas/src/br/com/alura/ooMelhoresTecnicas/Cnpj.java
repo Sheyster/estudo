@@ -1,6 +1,8 @@
 package br.com.alura.ooMelhoresTecnicas;
 
-public class Cnpj {
+import br.com.alura.ooMelhoresTecnicas.interfaces.Documento;
+
+public class Cnpj implements Documento {
 
 	private String valor;
 
@@ -53,6 +55,11 @@ public class Cnpj {
 		}
 		Cnpj outro = (Cnpj) obj;
 		return this.valor.equals(outro.valor); // delegamos a comparação de dois Cnpj para seus atributos valor
+	}
+
+	@Override
+	public String valor() {
+		return this.valor;
 	}
 
 }
