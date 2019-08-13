@@ -1,21 +1,25 @@
 package br.com.alura.ooMelhoresTecnicas;
 
-import java.util.HashMap;
-
+import br.com.alura.ooMelhoresTecnicas.exemplos.ArmazenadorDeDividas;
 import br.com.alura.ooMelhoresTecnicas.interfaces.Documento;
 
 public class BalancoEmpresa {
-	private HashMap<Documento, Divida> dividasPJ = new HashMap<Documento, Divida>();
+	private ArmazenadorDeDividas dividas;
+
+	public BalancoEmpresa(ArmazenadorDeDividas dividas) {
+		this.dividas = dividas;
+	}
 
 	public void registraDivida(Divida divida) {
-		dividasPJ.put(divida.getDocumentoCredor(), divida);
+		dividas.salva(divida);
 	}
 
 	public void pagaDivida(Documento documentoCredor, Pagamento pagamento) {
-		Divida divida = dividasPJ.get(documentoCredor);
+		Divida divida = dividas.carrega(documentoCredor);
 		if (divida != null) {
 			divida.registra(pagamento);
 		}
+		dividas.salva(divida);
 	}
 
 }

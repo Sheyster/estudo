@@ -20,11 +20,9 @@ public class RelatorioDeDivida {
 	}
 
 	public static void main(String[] args) {
-		Cnpj cnpjCredor = new Cnpj();
-		cnpjCredor.setValor("00.000.001/0001-01");
+		Cnpj cnpjCredor = new Cnpj("00.000.001/0001-01");
 
-		Cnpj cnpjPagador = new Cnpj();
-		cnpjPagador.setValor("00.000.002/0002-02");
+		Cnpj cnpjPagador = new Cnpj("00.000.002/0002-02");
 
 		Divida divida = new Divida();
 		divida.setCredor("Uma empresa");
