@@ -58,6 +58,16 @@
         <tfoot>
         </tfoot>
     </table>
+    <script src="js/app/models/Negociacao.js"></script>
     
+    <script>
+    	let n1 = new Negociacao(new Date(), 2, 10); // let é para garantir que a variavel será utilizada somente no bloco em que está e não de forma global
+    
+    	
+    	console.log(n1);
+    	n1._quantidade = 10000;
+    	console.log(n1.quantidade);
+    	
+    </script>
 </body>
 </html>
