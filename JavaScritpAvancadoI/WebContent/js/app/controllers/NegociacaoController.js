@@ -10,7 +10,7 @@ class NegociacaoController{
 		this._listaNegociacoes = new ListaNegociacoes();
 		this._negociacoesView = new NegociacoesView($("#negociacoesView"));
 
-		this._negociacoesView.update();
+		this._negociacoesView.update(this._listaNegociacoes);
 		// Object.freeze(this); // Essa funcao faz com não consigamos alterar o valor de um atributo de uma classe, similar ao private do Java
 	}
 	
@@ -46,6 +46,7 @@ class NegociacaoController{
 		console.log(DateHelper.dataParaTexto(this._criaNegociacao().data));
 		
 		this._listaNegociacoes.adiciona(this._criaNegociacao());
+		this._negociacoesView.update(this._listaNegociacoes);
 		this._limpaFormulario();
 		console.log(this._listaNegociacoes.negociacoes);
 	}
