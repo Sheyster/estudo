@@ -42,13 +42,6 @@ class NegociacaoController{
 		
 				// para um arrow function que contenha somente uma linha de decisão podemos deixar ela menos verbosa da sequinte forma
 		let data2 = new Date(...this._inputData.value.split("-").map((item, indice) => item - indice % 2));
-		
-		console.log(DateHelper.textoParaData(this._inputData.value));
-		console.log(data2);
-		
-		console.log(this._criaNegociacao());
-		console.log(DateHelper.dataParaTexto(this._criaNegociacao().data));
-		
 		this._listaNegociacoes.adiciona(this._criaNegociacao());
 		this._negociacoesView.update(this._listaNegociacoes);
 		
@@ -56,7 +49,6 @@ class NegociacaoController{
 		this._mensagemView.update(this._mensagem);
 		
 		this._limpaFormulario();
-		console.log(this._listaNegociacoes.negociacoes);
 	}
 	
 	_criaNegociacao(){
