@@ -7,6 +7,7 @@ class NegociacaoController{
 		this._inputData = $("#data");
 		this._inputQuantidade = $("#quantidade");
 		this._inputValor = $("#valor");
+		this._listaNegociacoes = new ListaNegociacoes();
 
 		// Object.freeze(this); // Essa funcao faz com não consigamos alterar o valor de um atributo de uma classe, similar ao private do Java
 	}
@@ -39,8 +40,22 @@ class NegociacaoController{
 		console.log(DateHelper.textoParaData(this._inputData.value));
 		console.log(data2);
 		
-		let negociacao = new Negociacao(DateHelper.textoParaData(this._inputData.value), this._inputQuantidade.value, this._inputValor.value);
-		console.log(negociacao);
-		console.log(DateHelper.dataParaTexto(negociacao.data));
+		console.log(this._criaNegociacao());
+		console.log(DateHelper.dataParaTexto(this._criaNegociacao().data));
+		
+		this._listaNegociacoes.adiciona(this._criaNegociacao());
+		this._limpaFormulario();
+		console.log(this._listaNegociacoes.negociacoes);
+	}
+	
+	_criaNegociacao(){
+		return new Negociacao(DateHelper.textoParaData(this._inputData.value), this._inputQuantidade.value, this._inputValor.value);
+	}
+	_limpaFormulario(){
+		this._inputData.value = "";
+		this._inputQuantidade.value = 1;
+		this._inputValor.value = 0.0;
+		
+		this._inputData.focus();
 	}
 }
