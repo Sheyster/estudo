@@ -31,11 +31,9 @@ class NegociacoesView {
 	        	<td colspan="3"></td>
 	        	<td>
 	        		${
-	        			(function(){
-	        				let total = 0;
-	        				model.negociacoes.forEach(n => total += n.volume);
-	        				return total;
-	        			})()
+	        			model.negociacoes.reduce(function(total, n) {
+	        				return total += n.volume;
+	        			}, 0.0)
 	        		}
 	        	</td>
 	        </tfoot>
@@ -50,6 +48,9 @@ class NegociacoesView {
 
 
 /*
+ * 
+ * (function(){ let total = 0; model.negociacoes.forEach(n => total += n.volume); return total; })()
+ * 
  * <table class="table table-hover table-bordered"> <thead> <tr> <th>DATA</th> <th>QUANTIDADE</th> <th>VALOR</th> <th>VOLUME</th> </tr> </thead>
  * 
  * <tbody> </tbody>
