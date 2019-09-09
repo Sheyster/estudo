@@ -8,7 +8,9 @@ class NegociacaoController{
 		this._inputQuantidade = $("#quantidade");
 		this._inputValor = $("#valor");
 		this._listaNegociacoes = new ListaNegociacoes();
+		this._negociacoesView = new NegociacoesView($("#negociacoesView"));
 
+		this._negociacoesView.update();
 		// Object.freeze(this); // Essa funcao faz com não consigamos alterar o valor de um atributo de uma classe, similar ao private do Java
 	}
 	
