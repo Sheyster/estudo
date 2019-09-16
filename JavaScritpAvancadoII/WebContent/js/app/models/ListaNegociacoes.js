@@ -1,13 +1,15 @@
 class ListaNegociacoes {
 	
-	constructor(armadilha) {
+	constructor() {
 		this._negociacoes = [];
-		this._armadilha = armadilha;
 	}
 	
 	adiciona(negociacao){
-		this._negociacoes.push(negociacao);
-		this._armadilha(this);
+		// forçando a chamada da atribuição a negociações
+		// Iss não é utilizado pois se tivessemos uma lista com mil negociações, estaríamos criando uma negociação a cada chamanda
+		this._negociacoes = [].concat(this._negociacoes, negociacao);
+		
+// this._negociacoes.push(negociacao);
 	}
 	
 	get negociacoes(){
@@ -17,6 +19,5 @@ class ListaNegociacoes {
 	
 	esvazia(){
 		this._negociacoes = [];
-		this._armadilha(this);
 	}
 }
