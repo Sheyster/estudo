@@ -24,38 +24,29 @@ class NegociacaoController{
 	}
 	
 	importaNegociacoes(){
-		let xhr = new XMLHttpRequest();
-		xhr.open("GET", "negociacoes/semana");
+		let service = new NegociacaoService();
 		
-		xhr.onreadystatechange = () => {
-			/*
-			 * 0: requisição ainda não iniciada
-			 * 
-			 * 1: conexão com o servidor estabelecidad
-			 * 
-			 * 2: requisição recebida
-			 * 
-			 * 3: processando requisição
-			 * 
-			 * 4: requisição concluida e a resposta esta pronta
-			 */
-			if(xhr.readyState == 4){
-				if(xhr.status == 200){
-					console.log("Obtendo as negociações do servidor.");
-					console.log(JSON.parse(xhr.responseText));
-					JSON.parse(xhr.responseText).map(objeto => new Negociacao(new Date(objeto.data), objeto.quantidade, objeto.valor))
-					.forEach(negociacao => this._listaNegociacoes.adiciona(negociacao));
-					this._mensagem.texto = "Negociações encontradas com sucesso!"
-				} else {
-					console.log("Não foi possível obter as negociações do servidor.");
-					console.log(xhr.responseText);
-					this._mensagem.texto = "Não foi possível obter as negociações."
-				}
-			}
-			
-		};
+		// Para resolver um possivel problema de sincronidade
+		Promise.all([service.obterNegociacoesDaSemana()])
+		.then(negociacoes => {
+			negociacoes
+			.reduce((arrayAchatado, array) => arrayAchatado.concat(array), [])
+			.forEach(negociacao => this._listaNegociacoes.adiciona(negociacao));
+			this._mensagem.texto = "Negociações importadas com sucesso!";
+		})
+		.catch(err => this._mensagem.texto = err);
 		
-		xhr.send();
+		
+		/*
+		 * let promise = service.obterNegociacoesDaSemana(); promise.then(negociacoes => { negociacoes.forEach(negociacao => this._listaNegociacoes.adiciona(negociacao))
+		 * this._mensagem.texto = "Negociações importadas com sucesso!"; }) .catch(err => this._mensagem.texto = err);
+		 */
+		
+		/*
+		 * service.obterNegociacoesDaSemana((err, negociacoes) => { if(err) { this._mensagem.texto = err; return; }
+		 * 
+		 * negociacoes.forEach(negociacao => this._listaNegociacoes.adiciona(negociacao)); this._mensagem.texto = "Negociações importadas com sucesso!"; });
+		 */
 	}
 	
 	apaga() {
