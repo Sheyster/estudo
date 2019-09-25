@@ -8,11 +8,13 @@ class NegociacaoController{
 		this._inputQuantidade = $("#quantidade");
 		this._inputValor = $("#valor");
 
-		this._listaNegociacoes = new Bind(new ListaNegociacoes(), new NegociacoesView($("#negociacoesView")), "adiciona", "esvazia"); 
+		this._listaNegociacoes = new Bind(new ListaNegociacoes(), new NegociacoesView($("#negociacoesView")), "adiciona", "esvazia", "ordena", "inverteOrdem"); 
 			// ProxyFactory.create(new ListaNegociacoes(), ["adiciona", "esvazia"], model => this._negociacoesView.update(model));
 		
 		this._mensagem = new Bind(new Mensagem(), new MensagemView($("#mensagemView")), "texto"); 
 			// ProxyFactory.create(new Mensagem(), ["texto"], (model) => this._mensagemView.update(model));
+		
+		this._ordemAtual = '';
 	}
 	
 	adiciona(event){
@@ -63,5 +65,17 @@ class NegociacaoController{
 		this._inputValor.value = 0.0;
 		
 		this._inputData.focus();
+	}
+	
+	ordena(coluna) {
+	    // ainda vamos implementar o método!
+		console.log("Testando ordenação" + coluna);
+		if(this._ordemAtual == coluna) {
+            // inverte a ordem da lista!
+			this._listaNegociacoes.inverteOrdem();
+        } else {
+            this._listaNegociacoes.ordena((a, b) => a[coluna] - b[coluna]);
+        }
+        this._ordemAtual = coluna;
 	}
 }
