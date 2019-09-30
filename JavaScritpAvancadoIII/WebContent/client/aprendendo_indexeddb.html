@@ -6,16 +6,22 @@
 </head>
 <body>
     <script>
-        var openRequest = window.indexedDB.open('aluraframe', 1);
+
+        var connection;
+        //O número é utilizado para atualizar a versão do banco e realizar as modificações
+        var openRequest = window.indexedDB.open('aluraframe', 2);
         
         // Pode se criar a função assim
         openRequest.onupgradeneeded = function(e) {
             console.log('Cria ou altera um banco já existente.');
+            var minhaConnection = e.target.result;
+            minhaConnection.createObjectStore('negociacoes');
         };
 
         // Ou pode se criar a função assim
         openRequest.onsuccess = e => {
             console.log('Conexão obtida com sucesso!');
+            connection = e.target.result;
         };
 
         openRequest.onerror = e => {
