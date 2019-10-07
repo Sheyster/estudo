@@ -1,52 +1,63 @@
-var stores = ['negociacoes'];
-var version = 4;
-var dbName = 'aluraframe';
+// fazendo desta forma eu torno a classe privada.
+function tmp() {
 
-class ConnectionFactory {
+    var stores = ['negociacoes'];
+    var version = 4;
+    var dbName = 'aluraframe';
 
-    // a) getConnection vai ser um método estático
-    // b) getConnection vai retornar uma promise
-    // c) não importa o número de vezes que eu chamar o método estático, a conexão sempre será a mesma
-    // d) o programado não pode chamar o close diretamente. Ela só pode ser fechada pela própria ConnectionFactory 
+    var connection = null;
 
-    constructor() {
-        throw new Error('Não é possível criar instâncias de ConnectionFactory!');
-    }
+    return class ConnectionFactory {
 
-    static getConnection() {
-        return new Promise((resolve, reject) => {
-            let openRequest = window.indexedDB.open(dbName, version);
+        // a) getConnection vai ser um método estático
+        // b) getConnection vai retornar uma promise
+        // c) não importa o número de vezes que eu chamar o método estático, a conexão sempre será a mesma
+        // d) o programado não pode chamar o close diretamente. Ela só pode ser fechada pela própria ConnectionFactory 
 
-            openRequest.onupgradeneeded = e => {
-                ConnectionFactory._createStore(e.target.result);
+        constructor() {
+            throw new Error('Não é possível criar instâncias de ConnectionFactory!');
+        }
 
-                // stores.forEach(store => {
-                // if (e.target.result.objectStoreNames.contains(store)) {
-                //     e.target.deleteObjectStore(store);
-                // }
+        static getConnection() {
+            return new Promise((resolve, reject) => {
+                let openRequest = window.indexedDB.open(dbName, version);
 
-                // e.target.result.createobjectStore(store, { autoIncrement: true });
-                // });
-            };
+                openRequest.onupgradeneeded = e => {
+                    ConnectionFactory._createStore(e.target.result);
 
-            openRequest.onsuccess = e => {
-                resolve(e.target.result);
-            };
+                    // stores.forEach(store => {
+                    // if (e.target.result.objectStoreNames.contains(store)) {
+                    //     e.target.deleteObjectStore(store);
+                    // }
 
-            openRequest.onerror = e => {
-                console.log(e.target.error);
-                reject(e.target.error.name);
-            };
-        });
-    }
+                    // e.target.result.createobjectStore(store, { autoIncrement: true });
+                    // });
+                };
 
-    static _createStore(connection) {
-        stores.forEach(store => {
-            if (connection.objectStoreNames.contains(store)) {
-                connection.deleteObjectStore(store);
-            }
+                openRequest.onsuccess = e => {
+                    if (!connection) {
+                        e.target.result;
+                    }
+                    resolve(connection);
+                };
 
-            connection.createobjectStore(store, { autoIncrement: true });
-        });
+                openRequest.onerror = e => {
+                    console.log(e.target.error);
+                    reject(e.target.error.name);
+                };
+            });
+        }
+
+        static _createStore(connection) {
+            stores.forEach(store => {
+                if (connection.objectStoreNames.contains(store)) {
+                    connection.deleteObjectStore(store);
+                }
+
+                connection.createobjectStore(store, { autoIncrement: true });
+            });
+        }
     }
 }
+
+var ConnectionFactory = tmp();
