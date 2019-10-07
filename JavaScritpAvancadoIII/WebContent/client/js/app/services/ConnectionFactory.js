@@ -1,5 +1,5 @@
-// fazendo desta forma eu torno a classe privada.
-function tmp() {
+// fazendo desta forma eu torno a classe privada. padrão = module pater
+var ConnectionFactory = (function () {
 
     var stores = ['negociacoes'];
     var version = 4;
@@ -58,6 +58,6 @@ function tmp() {
             });
         }
     }
-}
+})();
 
-var ConnectionFactory = tmp();
+//var ConnectionFactory = tmp();
