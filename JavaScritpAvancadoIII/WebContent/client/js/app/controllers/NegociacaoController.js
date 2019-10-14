@@ -15,6 +15,19 @@ class NegociacaoController {
 		// ProxyFactory.create(new Mensagem(), ["texto"], (model) => this._mensagemView.update(model));
 
 		this._ordemAtual = '';
+
+		// Outra forma de fazer a mesma coisa abaixo.
+		ConnectionFactory.getConnection()
+			.then(connection => new NegociacaoDao(connection))
+			.then(dao => dao.listaTodos())
+			.then(negociacoes => negociacoes
+				.forEach(negociacao => this._listaNegociacoes.adiciona(negociacao)));
+
+		// ConnectionFactory.getConnection().then(connection => {
+		// 	new NegociacaoDao(connection).listaTodos().then(negociacoes => {
+		// 		this._listaNegociacoes.adiciona(negociacoes);
+		// 	});
+		// });
 	}
 
 	adiciona(event) {
