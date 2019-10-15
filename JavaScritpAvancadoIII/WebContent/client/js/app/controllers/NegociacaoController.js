@@ -15,7 +15,10 @@ class NegociacaoController {
 		// ProxyFactory.create(new Mensagem(), ["texto"], (model) => this._mensagemView.update(model));
 
 		this._ordemAtual = '';
+		this._init();
+	}
 
+	_init() {
 		// Outra forma de fazer a mesma coisa abaixo.
 		ConnectionFactory.getConnection()
 			.then(connection => new NegociacaoDao(connection))
@@ -32,22 +35,24 @@ class NegociacaoController {
 		// 		this._listaNegociacoes.adiciona(negociacoes);
 		// 	});
 		// });
+
+		setInterval(() => {
+			this.importaNegociacoes();
+		}, 900000);
 	}
 
 	adiciona(event) {
 		event.preventDefault();
 
-		ConnectionFactory.getConnection().then(connection => {
-			let negociacao = this._criaNegociacao();
-
-			new NegociacaoDao(connection).adiciona(negociacao).then(() => {
+		let negociacao = this._criaNegociacao();
+		new NegociacaoService()
+			.cadastrar(negociacao)
+			.then(mensagem => {
 				this._listaNegociacoes.adiciona(negociacao);
-				this._mensagem.texto = 'Negociação adicionada com sucesso!';
-				this._limpaFormulario();
+				this._mensagem.texto = mensagem;
+			}).catch(err => {
+				this._mensagem.texto = err;
 			});
-		}).catch(err => {
-			this._mensagem.texto = err;
-		});
 	}
 
 	importaNegociacoes() {
@@ -55,12 +60,23 @@ class NegociacaoController {
 
 		// Para resolver um possivel problema de sincronidade
 		Promise.all([service.obterNegociacoesDaSemana(), service.obterNegociacoesDaSemanaAnterior(), service.obterNegociacoesDaSemanaRetrasada()])
-			.then(negociacoes => {
-				negociacoes
-					.reduce((arrayAchatado, array) => arrayAchatado.concat(array), [])
-					.forEach(negociacao => this._listaNegociacoes.adiciona(negociacao));
-				this._mensagem.texto = "Negociações importadas com sucesso!";
-			})
+			// Para resolver o problema de duplicidade na importação dos dados
+			.then(negociacoes =>
+				negociacoes.filter(negociacao =>
+					!this._listaNegociacoes.negociacoes.some(negociacaoExistente =>
+						JSON.stringify(negociacao) == JSON.stringify(negociacaoExistente)))
+			)
+			.then(negociacoes => negociacoes.forEach(negociacao => {
+				this._listaNegociacoes.adiciona(negociacao);
+				this._mensagem.texto = 'Negociação do periodo importada,';
+			}))
+
+			// .then(negociacoes => {
+			// 	negociacoes
+			// 		.reduce((arrayAchatado, array) => arrayAchatado.concat(array), [])
+			// 		.forEach(negociacao => this._listaNegociacoes.adiciona(negociacao));
+			// 	this._mensagem.texto = "Negociações importadas com sucesso!";
+			// })
 			.catch(err => this._mensagem.texto = err);
 
 
