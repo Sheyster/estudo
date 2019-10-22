@@ -15,11 +15,12 @@ class NegociacaoController {
 		// ProxyFactory.create(new Mensagem(), ["texto"], (model) => this._mensagemView.update(model));
 
 		this._ordemAtual = '';
+		this._service = new NegociacaoService();
 		this._init();
 	}
 
 	_init() {
-		new NegociacaoService()
+		this._service
 		.lista()
 		.then(negociacoes => 
 			negociacoes.forEach(negociacao =>
@@ -55,7 +56,7 @@ class NegociacaoController {
 		event.preventDefault();
 
 		let negociacao = this._criaNegociacao();
-		new NegociacaoService()
+		this._service
 			.cadastrar(negociacao)
 			.then(mensagem => {
 				this._listaNegociacoes.adiciona(negociacao);
@@ -66,10 +67,8 @@ class NegociacaoController {
 	}
 
 	importaNegociacoes() {
-		let service = new NegociacaoService();
-
 		// Para resolver um possivel problema de sincronidade
-		Promise.all([service.obterNegociacoesDaSemana(), service.obterNegociacoesDaSemanaAnterior(), service.obterNegociacoesDaSemanaRetrasada()])
+		Promise.all([this._service.obterNegociacoesDaSemana(), this._service.obterNegociacoesDaSemanaAnterior(), service.obterNegociacoesDaSemanaRetrasada()])
 			// Para resolver o problema de duplicidade na importação dos dados
 			.then(negociacoes =>
 				negociacoes.filter(negociacao =>
@@ -103,12 +102,15 @@ class NegociacaoController {
 	}
 
 	apaga() {
-		ConnectionFactory.getConnection()
-			.then(connection => new NegociacaoDao(connection))
-			.then(dao => dao.apagarTodos())
+		this._service
+			this.apaga()
 			.then(mensagem => {
 				this._mensagem.texto = mensagem;
 				this._listaNegociacoes.esvazia();
+			})
+			.catch(err => {
+				this._mensagem.texto = err;
+				console.log(err);
 			});
 	}
 
