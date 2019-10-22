@@ -78,4 +78,15 @@ class NegociacaoService {
 				throw new Error('Não doi possível adicionar a negociação')
 			});
 	}
+
+	lista() {
+
+		return ConnectionFactory.getConnection()
+			.then(connection => new NegociacaoDao(connection))
+			.then(dao => dao.listaTodos())
+			.catch(err => {
+				console.log(err);
+				throw new Error('Nao foi possivel obter as negociacoes!');
+			});
+	}
 }

@@ -19,16 +19,26 @@ class NegociacaoController {
 	}
 
 	_init() {
+		new NegociacaoService()
+		.lista()
+		.then(negociacoes => 
+			negociacoes.forEach(negociacao =>
+				this._listaNegociacoes.adiciona(negociacao)))
+		.catch(err => {
+			console.log(err);
+			this._mensagem.texto = err;
+		});		
+
 		// Outra forma de fazer a mesma coisa abaixo.
-		ConnectionFactory.getConnection()
-			.then(connection => new NegociacaoDao(connection))
-			.then(dao => dao.listaTodos())
-			.then(negociacoes => negociacoes
-				.forEach(negociacao => this._listaNegociacoes.adiciona(negociacao)))
-			.catch(err => {
-				console.log(err);
-				this._mensagem.texto = err;
-			});
+		// ConnectionFactory.getConnection()
+		// 	.then(connection => new NegociacaoDao(connection))
+		// 	.then(dao => dao.listaTodos())
+		// 	.then(negociacoes => negociacoes
+		// 		.forEach(negociacao => this._listaNegociacoes.adiciona(negociacao)))
+		// 	.catch(err => {
+		// 		console.log(err);
+		// 		this._mensagem.texto = err;
+		// 	});
 
 		// ConnectionFactory.getConnection().then(connection => {
 		// 	new NegociacaoDao(connection).listaTodos().then(negociacoes => {
