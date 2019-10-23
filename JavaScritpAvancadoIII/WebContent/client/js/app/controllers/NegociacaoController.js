@@ -49,7 +49,7 @@ class NegociacaoController {
 
 		setInterval(() => {
 			this.importaNegociacoes();
-		}, 3000);
+		}, 9000);
 	}
 
 	adiciona(event) {

@@ -103,7 +103,7 @@ class NegociacaoService {
 	}
 
 	importa(listaAtual) {
-		return Promise.all([obterNegociacoesDaSemana(), obterNegociacoesDaSemanaAnterior(), obterNegociacoesDaSemanaRetrasada()])
+		return Promise.all([this.obterNegociacoesDaSemana(), this.obterNegociacoesDaSemanaAnterior(), this.obterNegociacoesDaSemanaRetrasada()])
 			.then(negociacoes =>
 				negociacoes.filter(negociacao =>
 					!listaAtual.some(negociacaoExistente =>
