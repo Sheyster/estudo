@@ -21,14 +21,14 @@ class NegociacaoController {
 
 	_init() {
 		this._service
-		.lista()
-		.then(negociacoes => 
-			negociacoes.forEach(negociacao =>
-				this._listaNegociacoes.adiciona(negociacao)))
-		.catch(err => {
-			console.log(err);
-			this._mensagem.texto = err;
-		});		
+			.lista()
+			.then(negociacoes =>
+				negociacoes.forEach(negociacao =>
+					this._listaNegociacoes.adiciona(negociacao)))
+			.catch(err => {
+				console.log(err);
+				this._mensagem.texto = err;
+			});
 
 		// Outra forma de fazer a mesma coisa abaixo.
 		// ConnectionFactory.getConnection()
@@ -49,7 +49,7 @@ class NegociacaoController {
 
 		setInterval(() => {
 			this.importaNegociacoes();
-		}, 900000);
+		}, 3000);
 	}
 
 	adiciona(event) {
@@ -67,27 +67,13 @@ class NegociacaoController {
 	}
 
 	importaNegociacoes() {
-		// Para resolver um possivel problema de sincronidade
-		Promise.all([this._service.obterNegociacoesDaSemana(), this._service.obterNegociacoesDaSemanaAnterior(), service.obterNegociacoesDaSemanaRetrasada()])
-			// Para resolver o problema de duplicidade na importação dos dados
-			.then(negociacoes =>
-				negociacoes.filter(negociacao =>
-					!this._listaNegociacoes.negociacoes.some(negociacaoExistente =>
-						JSON.stringify(negociacao) == JSON.stringify(negociacaoExistente)))
-			)
+		this._service
+			.importa(this._listaNegociacoes.negociacoes)
 			.then(negociacoes => negociacoes.forEach(negociacao => {
 				this._listaNegociacoes.adiciona(negociacao);
 				this._mensagem.texto = 'Negociação do periodo importada,';
 			}))
-
-			// .then(negociacoes => {
-			// 	negociacoes
-			// 		.reduce((arrayAchatado, array) => arrayAchatado.concat(array), [])
-			// 		.forEach(negociacao => this._listaNegociacoes.adiciona(negociacao));
-			// 	this._mensagem.texto = "Negociações importadas com sucesso!";
-			// })
 			.catch(err => this._mensagem.texto = err);
-
 
 		/*
 		 * let promise = service.obterNegociacoesDaSemana(); promise.then(negociacoes => { negociacoes.forEach(negociacao => this._listaNegociacoes.adiciona(negociacao))
@@ -103,7 +89,7 @@ class NegociacaoController {
 
 	apaga() {
 		this._service
-			this.apaga()
+		this.apaga()
 			.then(mensagem => {
 				this._mensagem.texto = mensagem;
 				this._listaNegociacoes.esvazia();

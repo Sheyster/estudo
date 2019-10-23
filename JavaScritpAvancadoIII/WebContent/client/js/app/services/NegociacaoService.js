@@ -91,8 +91,8 @@ class NegociacaoService {
 			});
 	}
 
-	apaga(){
-		ConnectionFactory.getConnection()
+	apaga() {
+		return ConnectionFactory.getConnection()
 			.then(connection => new NegociacaoDao(connection))
 			.then(dao => dao.apagarTodos())
 			.then(mensagem => 'Negociacoes apagadas com sucesso!')
@@ -100,5 +100,30 @@ class NegociacaoService {
 				console.log(err);
 				throw new Error('Nao foi possivel apagar as negociacoes!');
 			});
+	}
+
+	importa(listaAtual) {
+		return Promise.all([obterNegociacoesDaSemana(), obterNegociacoesDaSemanaAnterior(), obterNegociacoesDaSemanaRetrasada()])
+			.then(negociacoes =>
+				negociacoes.filter(negociacao =>
+					!listaAtual.some(negociacaoExistente =>
+						JSON.stringify(negociacao) == JSON.stringify(negociacaoExistente)))
+			)
+			.catch(err => {
+				console.log(err);
+				throw new Error('Não foi possível buscar as negociações para importar');
+			});
+
+		// Promise.all([this._service.obterNegociacoesDaSemana(), this._service.obterNegociacoesDaSemanaAnterior(), service.obterNegociacoesDaSemanaRetrasada()])
+		// 	.then(negociacoes =>
+		// 		negociacoes.filter(negociacao =>
+		// 			!this._listaNegociacoes.negociacoes.some(negociacaoExistente =>
+		// 				JSON.stringify(negociacao) == JSON.stringify(negociacaoExistente)))
+		// 	)
+		// 	.then(negociacoes => negociacoes.forEach(negociacao => {
+		// 		this._listaNegociacoes.adiciona(negociacao);
+		// 		this._mensagem.texto = 'Negociação do periodo importada,';
+		// 	}))
+		// 	.catch(err => this._mensagem.texto = err);
 	}
 }
