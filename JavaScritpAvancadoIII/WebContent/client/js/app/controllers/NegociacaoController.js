@@ -89,7 +89,7 @@ class NegociacaoController {
 
 	apaga() {
 		this._service
-		this.apaga()
+			.apaga()
 			.then(mensagem => {
 				this._mensagem.texto = mensagem;
 				this._listaNegociacoes.esvazia();

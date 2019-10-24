@@ -68,6 +68,7 @@ var ConnectionFactory = (function () {
             if (connection) {
                 close();
                 connection = null;
+                close = null;
             }
         }
     }
