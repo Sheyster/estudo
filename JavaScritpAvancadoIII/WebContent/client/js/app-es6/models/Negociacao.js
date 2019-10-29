@@ -1,8 +1,8 @@
-class Negociacao {
-	constructor(data, quantidade, valor){
+export class Negociacao {
+	constructor(data, quantidade, valor) {
 		this._data = new Date(data.getTime()); // Isso é para garantir que não
-												// será alterada via setDate na
-												// aplicação
+		// será alterada via setDate na
+		// aplicação
 		this._quantidade = quantidade;
 		this._valor = valor;
 		Object.freeze(this);  /*
@@ -11,22 +11,22 @@ class Negociacao {
 								 * ao private do Java
 								 */
 	}
-	
-	get volume(){
+
+	get volume() {
 		return this._quantidade * this._valor;
 	}
-	
-	get data(){
+
+	get data() {
 		return new Date(this._data.getTime()); // Isso é para garantir que não
-												// será alterada via setDate na
-												// aplicação
+		// será alterada via setDate na
+		// aplicação
 	}
-	
-	get quantidade(){
+
+	get quantidade() {
 		return this._quantidade;
 	}
-	
-	get valor(){
+
+	get valor() {
 		return this._valor;
 	}
 }

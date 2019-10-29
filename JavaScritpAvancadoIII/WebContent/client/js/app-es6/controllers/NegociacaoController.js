@@ -1,3 +1,12 @@
+import { ListaNegociacoes } from "../models/ListaNegociacoes";
+import { Mensagem } from "../models/Mensagem";
+import { Negociacao } from "../models/Negociacao";
+import { NegociacoesView } from "../views/NegociacoesView";
+import { MensagemView } from "../views/MensagemView";
+import { NegociacaoService } from "../services/NegociacaoService";
+import { DateHelper } from "../helpers/DateHelper";
+import { Bind } from "../helpers/Bind";
+
 class NegociacaoController {
 
 	constructor() { // para garantir que vamos buscar o DOM somente uma vez e não sempre que o método for chamado
@@ -122,4 +131,10 @@ class NegociacaoController {
 		}
 		this._ordemAtual = coluna;
 	}
+}
+
+let negociacaoController = new NegociacaoController();
+
+export function currentInstance() {
+	return negociacaoController;
 }
