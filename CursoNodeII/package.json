@@ -1,13 +1,13 @@
 {
-  "name": "cursonodei",
+  "name": "casadocodigo",
   "version": "1.0.0",
-  "description": "Iniciando aprendizado do node",
+  "description": "Livraria Casa do Codigo",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server.js --ignore *.marko.js"
   },
-  "author": "Elton Ferreira",
+  "author": "Gabriel Leite",
   "license": "ISC",
   "dependencies": {
     "body-parser": "1.18.3",
